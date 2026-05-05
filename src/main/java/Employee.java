@@ -1,9 +1,10 @@
 public class Employee {
-private int employeeId;
-private String name;
-private String department;
-private double payRate;
-private double hoursWorked;
+    private int employeeId;
+    private int startTime;
+    private String name;
+    private String department;
+    private double payRate;
+    private double hoursWorked;
     // Constructor
     public Employee(int employeeId, String name, String department, double payRate, double hoursWorked) {
         this.employeeId = employeeId;
@@ -11,6 +12,7 @@ private double hoursWorked;
         this.department = department;
         this.payRate = payRate;
         this.hoursWorked = hoursWorked;
+        this.startTime = 0;
     }
 
     // Regular getters
@@ -60,5 +62,16 @@ private double hoursWorked;
         double regularPay = getRegularHours() * this.payRate;
         double overtimePay = getOvertimeHours() * this.payRate * 1.5;
         return regularPay + overtimePay;
+    }
+    // punchcard
+    public void punchTimeCard(int time) {
+        if (this.startTime == 0) {
+            this.startTime = time;
+        } else {
+            int hoursThisShift = time - this.startTime;
+            this.hoursWorked = this.hoursWorked + hoursThisShift;
+            this.startTime = 0;
+        }
+
     }
 }

@@ -9,6 +9,28 @@ public class Main {
         System.out.println("Occupied? " + room1.isOccupied());
         System.out.println("Dirty? " + room1.isDirty());
         System.out.println("Available? " + room1.isAvailable());
+        //room workflow
+        System.out.println();
+        System.out.println("==== ROOM WORKFLOW ====");
+        Room room2 = new Room(1, 124.00,false, false);
+        System.out.println("Available at start" + room2.isAvailable());
+
+        room2.checkIn();
+        System.out.println("After check in:");
+        System.out.println(" Occupied? " + room2.isOccupied());
+        System.out.println("  Dirty? " + room2.isDirty());
+        System.out.println(" Available" + room2.isAvailable());
+
+        room2.checkout();
+        System.out.println("After check out:");
+        System.out.println(" Occupied? " + room2.isOccupied());
+        System.out.println("  Dirty? " + room2.isDirty());
+        System.out.println(" Available" + room2.isAvailable());
+
+        room2.cleanRoom();
+        System.out.println("After cleaning:'");
+        System.out.println(" Available? " + room2.isAvailable());
+
 
         // Test Reservation — king, weekday
         System.out.println();
@@ -49,5 +71,23 @@ public class Main {
         System.out.println("Regular hours: " + emp2.getRegularHours());
         System.out.println("Overtime hours: " + emp2.getOvertimeHours());
         System.out.println("Total pay: $" + emp2.getTotalPay());
+
+        // test employee punch card
+        System.out.println();
+        System.out.println("==== EMPLOYEE PUNCH CARD =====");
+        Employee emp3 = new Employee(103, "charlie", "Maintenance", 18.00, 0);
+
+        emp3.punchTimeCard(9);
+        emp3.punchTimeCard(17);
+        System.out.println("Hours after day 1: " + emp3.getHoursWorked());
+
+
+        emp3.punchTimeCard(8);
+        emp3.punchTimeCard(16);
+        System.out.println("Hours after day 2: " + emp3.getHoursWorked());
+
+        System.out.println("Total pay: $" + emp3.getTotalPay());
     }
+
+
 }
