@@ -74,20 +74,51 @@ public class Main {
 
         // test employee punch card
         System.out.println();
-        System.out.println("==== EMPLOYEE PUNCH CARD =====");
+        System.out.println("==== EMPLOYEE PUNCH IN/OUT =====");
         Employee emp3 = new Employee(103, "charlie", "Maintenance", 18.00, 0);
 
-        emp3.punchTimeCard(9);
-        emp3.punchTimeCard(17);
+        emp3.punchIn(9);
+        emp3.punchOut(17);
         System.out.println("Hours after day 1: " + emp3.getHoursWorked());
 
-
-        emp3.punchTimeCard(8);
-        emp3.punchTimeCard(16);
+        emp3.punchIn(8);
+        emp3.punchOut(16);
         System.out.println("Hours after day 2: " + emp3.getHoursWorked());
 
         System.out.println("Total pay: $" + emp3.getTotalPay());
+
+        // test overloaded punch in (no parameter — uses current time)
+        System.out.println();
+        Employee emp4 = new Employee(104, "Dana", "Front Desk", 22.00, 0);
+        emp4.punchIn();
+        System.out.println("Dana punched in using current time");
+        // test Hotel
+        System.out.println();
+        System.out.println("==== HOTEL TESTS =====");
+        Hotel hotel = new Hotel("Year Up Inn", 10, 50);
+        System.out.println("Hotel: " + hotel.getName());
+        System.out.println("Available suites: " + hotel.getAvailableSuites());
+        System.out.println("Available rooms: " + hotel.getAvailableRooms());
+
+        boolean booking1 = hotel.bookRoom(2, true);
+        System.out.println("Booked 2 suites? " + booking1);
+        System.out.println("Available suites now: " + hotel.getAvailableSuites());
+
+        boolean booking2 = hotel.bookRoom(15, false);
+        System.out.println("Booked 15 rooms? " + booking2);
+        System.out.println("Available rooms now: " + hotel.getAvailableRooms());
+
+// try to overbook
+        boolean booking3 = hotel.bookRoom(20, true);
+        System.out.println("Tried to book 20 suites: " + booking3);
+        System.out.println("Suites still available: " + hotel.getAvailableSuites());
+
+// test second constructor
+        System.out.println();
+        Hotel hotel2 = new Hotel("Pre-booked Hotel", 5, 20, 2, 10);
+        System.out.println(hotel2.getName());
+        System.out.println("Available suites: " + hotel2.getAvailableSuites());
+        System.out.println("Available rooms: " + hotel2.getAvailableRooms());
     }
 
-
-}
+  }

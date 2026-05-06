@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 public class Employee {
     private int employeeId;
     private int startTime;
@@ -63,15 +64,28 @@ public class Employee {
         double overtimePay = getOvertimeHours() * this.payRate * 1.5;
         return regularPay + overtimePay;
     }
-    // punchcard
-    public void punchTimeCard(int time) {
-        if (this.startTime == 0) {
-            this.startTime = time;
-        } else {
-            int hoursThisShift = time - this.startTime;
-            this.hoursWorked = this.hoursWorked + hoursThisShift;
-            this.startTime = 0;
-        }
-
+    //punch in with sepcific time
+    public void punchIn(int time) {
+        this.startTime = time;
+    }
+    // overload punchin
+    public void punchIn() {
+        LocalDateTime now = LocalDateTime.now();
+        int currentHour = now.getHour();
+        this.startTime = currentHour;
+    }
+    // punch out
+    public void punchOut(int time) {
+        int hoursThisShift = time - this.startTime;
+        this.hoursWorked = this.hoursWorked + hoursThisShift;
+        this.startTime = 0;
+    }
+    // overload punchout
+    public void punchOut() {
+        LocalDateTime now = LocalDateTime.now();
+        int currentHour = now.getHour();
+        int hoursThisShift = currentHour - this.startTime;
+        this.hoursWorked = this.hoursWorked + hoursThisShift;
+        this.startTime = 0;
     }
 }
